@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './App.module.scss';
-import { useState, lazy } from 'react';
-import ComposantA from './pages/ComposantA/ComposantA.js';
+import { useState, lazy, Suspense } from 'react';
+import ComposantA from './pages/ComposantA/ComposantA';
 
-const ComposantB = lazy(() => import('./pages/ComposantB/ComposantB.js'));
+const ComposantB = lazy(() => import('./pages/ComposantB/ComposantB'));
 
 function App() {
   const [page, setPage] = useState('a');
@@ -19,8 +19,10 @@ function App() {
         </button>
       </nav>
       <div className="flex-fill p-20">
-        {page === 'a' && <ComposantA />}
-        {page === 'b' && <ComposantB />}
+        <Suspense>
+          {page === 'a' && <ComposantA />}
+          {page === 'b' && <ComposantB />}
+        </Suspense>
       </div>
     </div>
   );
