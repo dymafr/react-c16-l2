@@ -1,33 +1,22 @@
 import React from 'react';
+import styles from './App.module.scss';
+import { useState, lazy } from 'react';
 
-function handleClick(e) {
-  e.stopPropagation();
-  e.preventDefault();
-  console.log('CLIC', e);
-}
-
-function handleInput(e) {
-  console.log('INPUT', e);
-}
-
-function handleFocus(e) {
-  console.log('FOCUS', e);
-}
-
-function handleClickDiv() {
-  console.log('CLIC DIV');
-}
+const ComposantB = lazy(() => import('./pages/ComposantB/ComposantB.js'));
 
 function App() {
+  const [page, setPage] = useState('a');
+
   return (
-    <div
-      onClick={handleClickDiv}
-      className="d-flex flex-column justify-content-center align-items-center p-20"
-    >
-      <button onClick={handleClick} className="mb-20">
-        Submit
-      </button>
-      <input type="text" onInput={handleInput} onInput={handleFocus} />
+    <div className={`d-flex flex-column ${styles.appContainer}`}>
+      <nav className="d-flex p-20">
+        <button className="btn btn-primary mr-5" onClick={() => setPage('a')}>
+          Composant A
+        </button>
+        <button className="btn btn-primary mr-5" onClick={() => setPage('b')}>
+          Composant B
+        </button>
+      </nav>
     </div>
   );
 }
