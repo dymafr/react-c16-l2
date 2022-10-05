@@ -3,7 +3,12 @@ import styles from './App.module.scss';
 import { useState, lazy, Suspense } from 'react';
 import ComposantA from './pages/ComposantA/ComposantA';
 
-const ComposantB = lazy(() => import('./pages/ComposantB/ComposantB'));
+const ComposantB = lazy(
+  () =>
+    new Promise((res) =>
+      setTimeout(() => res(import('./pages/ComposantB/ComposantB')), 3000)
+    )
+);
 
 function App() {
   const [page, setPage] = useState('a');
