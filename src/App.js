@@ -24,7 +24,7 @@ function App() {
         </button>
       </nav>
       <div className="flex-fill p-20">
-        <Suspense>
+        <Suspense fallback={<h3>Chargement...</h3>}>
           {page === 'a' && <ComposantA />}
           {page === 'b' && <ComposantB />}
         </Suspense>
