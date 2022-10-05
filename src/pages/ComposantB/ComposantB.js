@@ -1,3 +1,5 @@
 import React from 'react';
 
-return <h1>ComposantB</h1>;
+export default function ComposantB() {
+  return <h3>Composant B</h3>;
+}
